@@ -1,0 +1,31 @@
+body {
+    background-image: url(../images/ep_naturalblack.png);
+}
+button {
+    margin: 5px;
+}
+p {
+    color: white;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+form {
+    margin-top: 6px;
+    margin-right: 2px;
+}
+#movie-text {
+    background-color: #413f4f;
+    border: 0;
+    margin-right: 5px;
+}
+h4 {
+    color: white;
+}
+.card {
+    background-image: url(../images/ep_naturalblack.png);
+    border: 0;
+}
+.card-img-bottom {
+    height: 300px;
+    width: 500px;
+}
