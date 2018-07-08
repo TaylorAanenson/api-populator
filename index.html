@@ -12,19 +12,41 @@
     
 <div class="container">
     <div class="row">
-        <div id="buttons"></div>
+        <div id="gif-buttons"></div>
     </div>
     <div class="row">
-        <p>Add a Movie</p>
-        <form action="">
-            <input id="movie-text" type="text">
+        <div id="movie-buttons"></div>
+    </div>
+    <div class="row">
+        <div id="bands-buttons"></div>
+    </div>
+    <div class="row">
+        <button id="animal-gifs" class="btn btn-danger">Animal GIFS</button>
+        <button id="movie-info" class="btn btn-danger">Movie Info</button>
+        <button id="bands-in-town" class="btn btn-danger">Bands In Town</button>
+        <form id="gif-form">
+            <input id="gif-text" type="text" placeholder="Add an Animal">
+            <input id="gif-button" class="btn btn-info" type="submit">
+        </form>
+        <form id="movie-form">
+            <input id="movie-text" type="text" placeholder="Add a Movie">
             <input id="movie-button" class="btn btn-info" type="submit">
         </form>
-        <button id="clear" class="btn btn-info">Clear</button>
+        <form id="bands-form">
+            <input id="bands-text" type="text" placeholder="Add a Band">
+            <input id="bands-button" class="btn btn-info" type="submit">
+        </form>
         <button id="more" class="btn btn-info">Add More</button>
+        <button id="clear" class="btn btn-info">Clear</button>
     </div>
     <div class="card">
         <div class="row" id="gifs"></div>
+    </div>
+    <div class="card">
+        <div class="row" id="movies"></div>
+    </div>
+    <div class="card">
+        <div class="row" id="bands"></div>
     </div>
 </div>
 

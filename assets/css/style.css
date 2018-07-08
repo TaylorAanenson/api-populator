@@ -1,6 +1,16 @@
 body {
     background-image: url(../images/ep_naturalblack.png);
 }
+#gif-buttons, #movie-buttons, #bands-buttons {
+    overflow-y: scroll;
+    height: 100px;
+}
+#movie-buttons, #bands-buttons {
+    display: none;
+}
+#movie-form, #bands-form {
+    display: none;
+}
 button {
     margin: 5px;
 }
@@ -10,22 +20,78 @@ p {
     margin-top: 10px;
 }
 form {
-    margin-top: 6px;
-    margin-right: 2px;
+    margin-top: 5px;
+    margin-right: 5px;
 }
-#movie-text {
+#bands-in-town {
+    margin-right: 28%;
+}
+#gif-text, #movie-text, #bands-text {
     background-color: #413f4f;
     border: 0;
     margin-right: 5px;
 }
+#movies {
+    margin-top: 20px;
+}
+img {
+    width: 120%;
+    margin-right: 5%;
+}
+.band-img {
+    height: 0%;
+    width: 50%;
+}
+h1 {
+    margin-top: -20px;
+    margin-bottom: -10px;
+}
+.movie-info {
+    margin-left: 8%;
+}
 h4 {
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+.card-title {
     color: white;
 }
 .card {
     background-image: url(../images/ep_naturalblack.png);
     border: 0;
 }
+#gifs {
+    overflow-y: scroll;
+    height: 570px;
+}
 .card-img-bottom {
     height: 300px;
     width: 500px;
+}
+@media screen and (max-width: 500px){
+    #gif-buttons, #movie-buttons, #bands-buttons {
+        overflow-y: scroll;
+        height: 100px;
+    }
+    #movie-info {
+        margin-right: 0 ;
+    }
+    #gif-text {
+        width: 49%;
+    }
+    #gif-form {
+        width: 60%;
+        margin-left: 19px;
+        margin-right: -35px;
+    }
+    .btn.btn-info {
+        font-size: 10px;
+    }
+    #gifs {
+        height: 470px;
+    }
+    .card-img-bottom {
+        height: 200px;
+        width: 300px;
+    }
 }
