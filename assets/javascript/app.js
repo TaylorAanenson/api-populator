@@ -1,7 +1,7 @@
 // Arrays for buttons
-var topics = ['puppy','dog','kitten','cat','lion','tiger','cheetah','bear','polar bear','panda bear','giraffe','shark','whale','penguin','raccoon','fox','rabbit','hamster']
+var topics = ['puppy','dog','kitten','cat','lion','tiger','cheetah','bear','polar bear','panda bear','giraffe','shark','whale','penguin','raccoon','rabbit','hamster']
 var films = ['the empire strikes back','revenge of the sith','the force awakens','the last jedi','solo a star wars story','ant man','infinity war','iron man','spider man homecoming','guardians of the galaxy','guardians of the galaxy vol 2','doctor strange','deadpool'];
-var bands = ['blessthefall','a day to remember','the amity affliction','asking alexandria','attack attack!','the devil wears prada','of mice & men','we came as romans','my chemical romance','red hot chili peppers','green day'];
+var bands = ['blessthefall','a day to remember','the amity affliction','asking alexandria','the devil wears prada','of mice & men','we came as romans','my chemical romance','red hot chili peppers','green day'];
 var selected = [];
 
 // Buttons for different apps on page
@@ -116,33 +116,32 @@ $(document).on('click','#gif-buttons button',function(){
     selected = [];
     selected.push(gif);
     var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=sno2ugMbcJoxYMAueEL8SGpMXOOips2B&tag="+gif;
-    console.log(queryURL);
-    console.log(gif);
     $('#gifs').empty();
     for (i=0;i<10;i++){
     $.ajax({
         url: queryURL
     }).then(function(response){
         console.log(response);
-        console.log(response.data.title);
-        console.log(response.data.images.original_still.url);
-        console.log(response.data.image_original_url);
         var div = $('<div>');
         div.attr('class','card-body col-lg-6');
         var p = $('<h4>');
         p.attr('class','card-title');
         p.text(response.data.title);
         var a = $('<a>');
+        var b = $('<a>');
         a.attr('class','card-text');
+        b.attr('class','source card-text');
         a.attr('href',response.data.url).text('Giphy Page');
+        b.attr('href',response.data.source).text('Source Page');
         a.attr('target','_blank');
+        b.attr('target','_blank');
         var img = $('<img>');
         img.attr('class','card-img-bottom')
         img.attr('src',response.data.images.original_still.url);
         img.attr('data-still',response.data.images.original_still.url);
         img.attr('data-animate',response.data.image_original_url);
         img.attr('data-state','still');
-        $(div).append(p,a,img);
+        $(div).append(p,a,b,img);
         $('#gifs').append(div);
     });
     }
@@ -151,15 +150,11 @@ $(document).on('click','#gif-buttons button',function(){
 // More gifs generator
 $('#more').on('click',function(){
     var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=sno2ugMbcJoxYMAueEL8SGpMXOOips2B&tag="+selected;
-    console.log(queryURL);
     for (i=0;i<10;i++){
     $.ajax({
         url: queryURL
     }).then(function(response){
         console.log(response);
-        console.log(response.data.title);
-        console.log(response.data.images.original_still.url);
-        console.log(response.data.image_original_url);
         var div = $('<div>');
         div.attr('class','card-body col-lg-6');
         var p = $('<h4>');
@@ -207,16 +202,16 @@ $(document).on('click','#movie-buttons button',function(){
     $.ajax({
         url: queryURL
     }).then(function(response){
-        console.log(response)
-        var img = $('<img>')
-        img.attr('src', response.Poster)
+        console.log(response);
+        var img = $('<img>');
+        img.attr('src',response.Poster);
         var posterDiv = $('<div>');
         var infoDiv = $('<div>');
         var movieSite = $('<a>');
         movieSite.attr('href',response.Website).text('Movie Site');
-        movieSite.attr('target','_blank')
+        movieSite.attr('target','_blank');
         posterDiv.append(img);
-        infoDiv.attr('class','movie-info card-body col-lg-7 text-white');
+        infoDiv.attr('class','movie-info card-body col-lg-7');
         infoDiv.append('<h1>'+response.Title+'</h1>'+'<br>'+'Rated: '+response.Rated+'<br>'+'Released: '+response.Released+'<br>'+'Plot: '+response.Plot+'<br>'+'<h4>'+'Ratings'+'</h4>'+'<br>'+'Internet Movie Database: '+response.Ratings[0].Value+'<br>'+'Rotten Tomatoes: '+response.Ratings[1].Value+'<br>'+'Metacritic: '+response.Ratings[2].Value+'<br>'+'<br>'+'Actors: '+response.Actors+'<br>'+'Awards: '+response.Awards+'<br>'+'Box Office: '+response.BoxOffice+'<br>'+'DVD Release: '+response.DVD+'<br>'+'Director: '+response.Director+'<br>'+'Genre: '+response.Genre+'<br>'+'Producer: '+response.Production+'<br>'+'Runtime: '+response.Runtime+'<br>');
         infoDiv.append(movieSite);
         $('#movies').append(posterDiv);
@@ -225,37 +220,34 @@ $(document).on('click','#movie-buttons button',function(){
   });
   $(document).on('click','#bands-buttons button',function(){
     var artist = $(this).text();
-
-    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
+    var queryURL = "https://rest.bandsintown.com/artists/"+artist+"?app_id=codingbootcamp";
     $('#bands').empty();
     $.ajax({
         url: queryURL
     }).then(function(response){
         console.log(response);
-
-    var img = $('<img>');
-    img.attr('class','band-img');
-    img.attr('src',response.image_url);
-    $('#bands').append(img);
-    $('#bands').append('<br>');
-
-    var name = $('<a>');
-    name.attr('href',response.facebook_page_url);
-    name.attr('target','_blank');
-    name.text(response.name);
-    $('#bands').append(name);
-    $('#bands').append('<br>');
-
-    $('#bands').append('Fans tracking artist: '+response.tracker_count+'<br>');
-
-    $('#bands').append('Number of upcoming events: '+response.upcoming_event_count+'<br>');
-
-    var url = $('<a>');
-    url.attr('href',response.url);
-    url.attr('target','_blank');
-    url.text('See events');
-    $('#bands').append(url);
-    console.log(url);
-
+        var img = $('<img>');
+        img.attr('id','band-img');
+        img.attr('src',response.image_url);
+        var textDiv = $('<div>');
+        var name = $('<h1>');
+        var text = $('<p>');
+        var events = $('<a>');
+        var facebook = $('<a>')
+        textDiv.attr('class','card-body col-lg-5');
+        name.attr('id','name')
+        name.text(response.name);
+        text.append('<br>'+'Fans tracking artist: '+response.tracker_count+'<br>','Number of upcoming events: '+response.upcoming_event_count+'<br>');
+        events.attr('id','events')
+        events.attr('href',response.url);
+        events.attr('target','_blank');
+        events.text('See events');
+        facebook.attr('id','facebook');
+        facebook.attr('href',response.facebook_page_url);
+        facebook.attr('target','_blank');
+        facebook.text('Facebook');
+        textDiv.append(name,text,events,facebook);
+        $('#bands').append(img);
+        $('#bands').append(textDiv);
     });
 });
