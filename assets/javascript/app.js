@@ -115,7 +115,7 @@ $(document).on('click','#gif-buttons button',function(){
     var gif = $(this).text();
     selected = [];
     selected.push(gif);
-    var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=sno2ugMbcJoxYMAueEL8SGpMXOOips2B&tag="+gif;
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=sno2ugMbcJoxYMAueEL8SGpMXOOips2B&tag="+gif;
     $('#gifs').empty();
     for (i=0;i<10;i++){
     $.ajax({
@@ -149,7 +149,7 @@ $(document).on('click','#gif-buttons button',function(){
 
 // More gifs generator
 $('#more').on('click',function(){
-    var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=sno2ugMbcJoxYMAueEL8SGpMXOOips2B&tag="+selected;
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=sno2ugMbcJoxYMAueEL8SGpMXOOips2B&tag="+selected;
     for (i=0;i<10;i++){
     $.ajax({
         url: queryURL
