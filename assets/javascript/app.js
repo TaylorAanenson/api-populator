@@ -192,6 +192,7 @@ $(document).on('click','.card-img-bottom',function(){
 $('#clear').on('click',function(){
     $('#gifs').empty();
     $('#movies').empty();
+    $('#bands').empty();
 });
 
 // Movie info generator
